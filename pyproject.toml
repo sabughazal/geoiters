@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geoiters"
+version = "0.1.0"
+description = "A Python package for geospatial iteration utilities"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "Apache License 2.0"}
+authors = [
+    {name = "Sultan Abughazal", email = "sultan.abughazal@outlook.com"},
+]
+keywords = ["geospatial", "iteration", "utilities", "GIS", "spatial data"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License :: 2.0",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "dataclasses>=0.8; python_version < '3.7'",
+    "pyproj>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/sabughazal/geoiters"
+Repository = "https://github.com/sabughazal/geoiters"
+Issues = "https://github.com/sabughazal/geoiters/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["geoiters*"]
