@@ -6,7 +6,7 @@ A simple package for geospatial iterators.
 ## Installation
 
 ```bash
-pip install geoiters
+pip install geoiters (coming to pypi soon)
 ```
 
 ## Usage
@@ -44,6 +44,7 @@ See the complete example [here](examples/by_max_patch_area.py).
 
 #### To Use with Multiprocessing
 ```python
+import time
 import multiprocessing as mp
 from geoiters.utils import Extent
 from geoiters.grid import GridIterator
@@ -75,3 +76,4 @@ See the complete example [here](examples/with_multiprocessing.py).
 ## To be Implemented
 - Implement a hexagonal tessellation iterator.
 - Implement a map tile iterator.
+- Overlapping patches.
