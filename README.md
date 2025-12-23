@@ -24,6 +24,7 @@ for i, patch in enumerate(itr):
 ```
 See the complete example [here](examples/by_rows_and_columns.py).
 <img style="margin-bottom: 1.5rem" align="left" src="assets/examples_standard.png">
+<br />
 
 
 #### Grid by Max Patch Area
@@ -39,7 +40,7 @@ for i, patch in enumerate(itr):
 ```
 See the complete example [here](examples/by_max_patch_area.py).
 <img style="margin-bottom: 1.5rem" align="left" src="assets/example_by_area.png">
-
+<br />
 
 #### To Use with Multiprocessing
 ```python
@@ -61,6 +62,7 @@ pool.close()
 pool.join()
 ```
 See the complete example [here](examples/with_multiprocessing.py).
+<br />
 
 
 ## Features
