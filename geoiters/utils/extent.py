@@ -1,5 +1,6 @@
 """Module defining the Extent class for geographic extents.
 """
+import math
 from .utils import haversine
 
 
@@ -79,6 +80,28 @@ class Extent(object):
         min_y, max_y = min(min_y, max_y), max(min_y, max_y)
 
         return Extent(min_x, min_y, max_x, max_y, crs=target_crs)
+
+    @staticmethod
+    def from_tile_coordinates(xtile: int, ytile: int, zoom: int) -> 'Extent':
+        """Get the geographic extent of a tile given its x, y coordinates and zoom level.
+
+        Args:
+            xtile (int): X tile coordinate.
+            ytile (int): Y tile coordinate.
+            zoom (int): Zoom level.
+
+        Returns:
+            Extent: The geographic extent of the tile.
+        """
+        n = 2.0 ** zoom
+        lon_min = xtile / n * 360.0 - 180.0
+        lat_rad_max = math.atan(math.sinh(math.pi * (1 - 2 * ytile / n)))
+        lat_max = math.degrees(lat_rad_max)
+        lon_max = (xtile + 1) / n * 360.0 - 180.0
+        lat_rad_min = math.atan(math.sinh(math.pi * (1 - 2 * (ytile + 1) / n)))
+        lat_min = math.degrees(lat_rad_min)
+
+        return Extent(lon_min, lat_min, lon_max, lat_max, crs="EPSG:4326")
 
 
 WEB_MERCATOR_EXTENT = Extent(-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244, crs="EPSG:3857")
