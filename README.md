@@ -56,7 +56,7 @@ def worker(patch: Extent):
           f"Processing patch with extent {patch}")
 
 ext = Extent(-74.2, 40.65, -73.7, 40.85, crs="EPSG:4326")
-itr = GridIterator(ext, rows=4, columns=4) # area in sqm
+itr = GridIterator(ext, rows=4, columns=4)
 
 pool = mp.Pool(processes=4)
 pool.map(worker, itr)
