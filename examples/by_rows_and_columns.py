@@ -1,6 +1,6 @@
 # %%
-import geoiters
 from geoiters.utils import Extent
+from geoiters.grid import GridIterator
 
 try:
     import plotly.graph_objects as go
@@ -9,7 +9,7 @@ except ImportError:
 
 
 
-ext = Extent(-74.0, 40.7, -73.9, 40.8, crs="EPSG:4326")
+ext = Extent(-74.2, 40.65, -73.7, 40.85, crs="EPSG:4326")
 
 square_coords = ext.to_box_coordinates()
 lons, lats = zip(*square_coords)
@@ -25,7 +25,7 @@ fig.add_trace(go.Scattermapbox(
 ))
 
 # use the iterator to create patches
-itr = geoiters.RowsAndColumns(ext, rows=10, columns=10)
+itr = GridIterator(ext, rows=10, columns=10)
 for i, patch in enumerate(itr):
     patch_coords = patch.to_box_coordinates()
     lons, lats = zip(*patch_coords)
@@ -37,6 +37,7 @@ for i, patch in enumerate(itr):
         line=dict(width=2, color='blue'),
         name=f"Patch {i+1}"
     ))
+    print(f"Patch {i+1}, Area {patch.area:,.3f} sqm, {patch}")
 
 fig.update_layout(
     mapbox_style="open-street-map",
@@ -45,3 +46,4 @@ fig.update_layout(
 )
 
 fig.show()
+# %%

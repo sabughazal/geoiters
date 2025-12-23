@@ -1,5 +1,6 @@
 """Module defining the Extent class for geographic extents.
 """
+from .utils import haversine
 
 
 class Extent(object):
@@ -28,6 +29,14 @@ class Extent(object):
         """Returns a string representation of the Extent object."""
         return f"Extent(min_x={self.min_x}, min_y={self.min_y}, max_x={self.max_x}, max_y={self.max_y}, crs={self.crs})"
 
+    @property
+    def area(self) -> float:
+        """Calculates and returns the area of the extent in square meters."""
+        ext = self.transform_to("EPSG:4326")
+        width = haversine(ext.min_x, ext.min_y, ext.max_x, ext.min_y)
+        height = haversine(ext.min_x, ext.min_y, ext.min_x, ext.max_y)
+        return width * height
+
     def copy(self) -> 'Extent':
         """Returns a copy of the Extent object."""
         return Extent(self.min_x, self.min_y, self.max_x, self.max_y, crs=self.crs)
@@ -48,6 +57,28 @@ class Extent(object):
             [self.min_x, self.max_y],
             [self.min_x, self.min_y],
         ]
+
+    def transform_to(self, target_crs: str) -> 'Extent':
+        """
+        Transforms the extent to a different coordinate reference system (CRS).
+        Returns a new Extent object.
+        """
+        import pyproj
+
+        if self.crs == target_crs:
+            return self
+
+        if self.crs is None:
+            raise ValueError("Current CRS is not defined, cannot transform.")
+
+        transformer = pyproj.Transformer.from_crs(self.crs, target_crs, always_xy=True)
+        min_x, min_y = transformer.transform(self.min_x, self.min_y)
+        max_x, max_y = transformer.transform(self.max_x, self.max_y)
+
+        min_x, max_x = min(min_x, max_x), max(min_x, max_x)
+        min_y, max_y = min(min_y, max_y), max(min_y, max_y)
+
+        return Extent(min_x, min_y, max_x, max_y, crs=target_crs)
 
 
 WEB_MERCATOR_EXTENT = Extent(-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244, crs="EPSG:3857")
