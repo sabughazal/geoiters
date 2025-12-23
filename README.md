@@ -77,3 +77,4 @@ See the complete example [here](examples/with_multiprocessing.py).
 - Implement a hexagonal tessellation iterator.
 - Implement a map tile iterator.
 - Overlapping patches.
+- Iteration order options (sequence, checkered, etc.)
