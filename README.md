@@ -11,6 +11,7 @@ pip install geoiters (coming to pypi soon)
 
 ## Usage
 
+### 1. Grid Iterator
 #### Grid by Rows and Columns
 ```python
 from geoiters.grid import GridIterator
@@ -23,7 +24,7 @@ for i, patch in enumerate(itr):
     print(i, patch)
 ```
 See the complete example [here](examples/by_rows_and_columns.py).
-<img style="margin-bottom: 1.5rem" align="auto" src="assets/examples_standard.png">
+<img style="margin-bottom: 1.5rem" align="auto" src="assets/example_standard.png">
 <br />
 
 
@@ -63,6 +64,22 @@ pool.close()
 pool.join()
 ```
 See the complete example [here](examples/with_multiprocessing.py).
+<br />
+
+### 2. Tiles Iterator
+
+```python
+from geoiters.grid import TilesIterator
+from geoiters.utils import Extent
+
+ext = Extent(-74.2, 40.65, -73.7, 40.85, crs="EPSG:4326")
+itr = TilesIterator(ext, zoom_level=13)
+
+for i, tile in enumerate(itr):
+    print(i, tile)
+```
+See the complete example [here](examples/tiles_iterator.py).
+<img style="margin-bottom: 1.5rem" align="auto" src="assets/example_map_tiles.png">
 <br />
 
 
