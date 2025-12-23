@@ -1,6 +1,6 @@
 # GeoIters
 
-<img align="left" src="assets/banner.png">
+<img align="auto" src="assets/banner.png">
 A simple package for geospatial iterators.
 
 ## Installation
@@ -23,7 +23,7 @@ for i, patch in enumerate(itr):
     print(i, patch)
 ```
 See the complete example [here](examples/by_rows_and_columns.py).
-<img style="margin-bottom: 1.5rem" align="left" src="assets/examples_standard.png">
+<img style="margin-bottom: 1.5rem" align="auto" src="assets/examples_standard.png">
 <br />
 
 
@@ -39,7 +39,7 @@ for i, patch in enumerate(itr):
     print(i, patch)
 ```
 See the complete example [here](examples/by_max_patch_area.py).
-<img style="margin-bottom: 1.5rem" align="left" src="assets/example_by_area.png">
+<img style="margin-bottom: 1.5rem" align="auto" src="assets/example_by_area.png">
 <br />
 
 #### To Use with Multiprocessing
