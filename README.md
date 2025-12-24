@@ -1,12 +1,12 @@
 # GeoIters
 
-<img align="auto" src="assets/banner.png">
+<img align="auto" src="geoiters/assets/banner.png">
 A simple package for geospatial iterators.
 
 ## Installation
 
 ```bash
-pip install geoiters (coming to pypi soon)
+pip install geoiters
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ for i, patch in enumerate(itr):
     print(i, patch)
 ```
 See the complete example [here](examples/by_rows_and_columns.py).
-<img style="margin-bottom: 1.5rem" align="auto" src="assets/example_standard.png">
+<img style="margin-bottom: 1.5rem" align="auto" src="geoiters/assets/example_standard.png">
 <br />
 
 
@@ -40,7 +40,7 @@ for i, patch in enumerate(itr):
     print(i, patch)
 ```
 See the complete example [here](examples/by_max_patch_area.py).
-<img style="margin-bottom: 1.5rem" align="auto" src="assets/example_by_area.png">
+<img style="margin-bottom: 1.5rem" align="auto" src="geoiters/assets/example_by_area.png">
 <br />
 
 #### To Use with Multiprocessing
@@ -79,7 +79,7 @@ for i, tile in enumerate(itr):
     print(i, tile)
 ```
 See the complete example [here](examples/tiles_iterator.py).
-<img style="margin-bottom: 1.5rem" align="auto" src="assets/example_map_tiles.png">
+<img style="margin-bottom: 1.5rem" align="auto" src="geoiters/assets/example_map_tiles.png">
 <br />
 
 
