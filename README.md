@@ -1,6 +1,6 @@
 # GeoIters
 
-<img align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/main/assets/banner.png">
+<img align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/release/v0.3.0/assets/banner.png">
 A simple package for geospatial iterators.
 
 ## Installation
@@ -23,8 +23,8 @@ itr = GridIterator(ext, rows=10, columns=10)
 for i, patch in enumerate(itr):
     print(i, patch)
 ```
-See the complete example [here](https://github.com/sabughazal/geoiters/tree/main/examples/by_rows_and_columns.py).
-<img style="margin-bottom: 1.5rem" align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/main/assets/example_standard.png">
+See the complete example [here](https://github.com/sabughazal/geoiters/tree/release/v0.3.0/examples/by_rows_and_columns.py).
+<img style="margin-bottom: 1.5rem" align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/release/v0.3.0/assets/example_standard.png">
 <br />
 
 
@@ -39,8 +39,8 @@ itr = GridIterator(ext, patch_max_area=10_000_000) # area in sqm
 for i, patch in enumerate(itr):
     print(i, patch)
 ```
-See the complete example [here](https://github.com/sabughazal/geoiters/tree/main/examples/by_max_patch_area.py).
-<img style="margin-bottom: 1.5rem" align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/main/assets/example_by_area.png">
+See the complete example [here](https://github.com/sabughazal/geoiters/tree/release/v0.3.0/examples/by_max_patch_area.py).
+<img style="margin-bottom: 1.5rem" align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/release/v0.3.0/assets/example_by_area.png">
 <br />
 
 #### To Use with Multiprocessing
@@ -63,7 +63,7 @@ pool.map(worker, itr)
 pool.close()
 pool.join()
 ```
-See the complete example [here](https://github.com/sabughazal/geoiters/tree/main/examples/with_multiprocessing.py).
+See the complete example [here](https://github.com/sabughazal/geoiters/tree/release/v0.3.0/examples/with_multiprocessing.py).
 <br />
 
 ### 2. Tiles Iterator
@@ -78,8 +78,8 @@ itr = TilesIterator(ext, zoom_level=13)
 for i, tile in enumerate(itr):
     print(i, tile)
 ```
-See the complete example [here](https://github.com/sabughazal/geoiters/tree/main/examples/tiles_iterator.py).
-<img style="margin-bottom: 1.5rem" align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/main/assets/example_map_tiles.png">
+See the complete example [here](https://github.com/sabughazal/geoiters/tree/release/v0.3.0/examples/tiles_iterator.py).
+<img style="margin-bottom: 1.5rem" align="auto" src="https://raw.githubusercontent.com/sabughazal/geoiters/release/v0.3.0/assets/example_map_tiles.png">
 <br />
 
 
