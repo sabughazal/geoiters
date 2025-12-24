@@ -42,11 +42,6 @@ class Extent(object):
         """Returns a copy of the Extent object."""
         return Extent(self.min_x, self.min_y, self.max_x, self.max_y, crs=self.crs)
 
-    # def to_rasterio_window(self, transform) -> 'rasterio.windows.Window':
-    #     from rasterio.windows import from_bounds
-    #     window = from_bounds(*self.as_list(), transform)
-    #     return window
-
     def to_box_coordinates(self) -> list:
         """Returns the extent as a list of a closed box coordinates.
         This first and last coordinate are the same to close the box.
@@ -81,6 +76,45 @@ class Extent(object):
 
         return Extent(min_x, min_y, max_x, max_y, crs=target_crs)
 
+    def to_rasterio_bounds(self) -> 'rasterio.coords.BoundingBox':
+        import rasterio
+        return rasterio.coords.BoundingBox(self.min_x, self.min_y, self.max_x, self.max_y)
+
+    def to_geometry(self) -> 'shapely.geometry.Polygon':
+        from shapely.geometry import box
+        geom = box(self.min_x, self.min_y, self.max_x, self.max_y)
+        return geom
+
+    def to_geojson(self) -> dict:
+        import geojson
+        geom = self.to_geometry()
+        return geojson.Feature(geometry=geom, properties={})
+
+    def as_list(self) -> list:
+        """Returns the extent as a list of coordinates [min_x, min_y, max_x, max_y].
+
+        Returns:
+            list[float]: the list [min_x, min_y, max_x, max_y]
+        """
+        return [self.min_x, self.min_y, self.max_x, self.max_y]
+
+    def as_dict(self) -> list:
+        """Returns the extent as a list of coordinates [min_x, min_y, max_x, max_y].
+
+        Returns:
+            list[float]: the list [min_x, min_y, max_x, max_y]
+        """
+        return {
+            "left": self.min_x,
+            "bottom": self.min_y,
+            "right": self.max_x,
+            "top": self.max_y,
+        }
+
+    @staticmethod
+    def from_rasterio_bounds(bounds: 'rasterio.coords.BoundingBox', crs: str = None) -> 'Extent':
+        return Extent(bounds.left, bounds.bottom, bounds.right, bounds.top, crs=crs)
+
     @staticmethod
     def from_tile_coordinates(xtile: int, ytile: int, zoom: int) -> 'Extent':
         """Get the geographic extent of a tile given its x, y coordinates and zoom level.
@@ -102,6 +136,25 @@ class Extent(object):
         lat_min = math.degrees(lat_rad_min)
 
         return Extent(lon_min, lat_min, lon_max, lat_max, crs="EPSG:4326")
+
+    @staticmethod
+    def from_string(bounds: str, crs: str = None) -> 'Extent':
+        """Creates an Extent object from a string representation.
+
+        Args:
+            bounds (str): A string representation of the extent in the format "min_x,min_y,max_x,max_y".
+            crs (str, optional): Coordinate reference system of the extent. Defaults to None.
+
+        Raises:
+            ValueError: If the input string does not contain exactly four comma-separated values.
+        Returns:
+            Extent: The created Extent object.
+        """
+
+        bounds_arr = [float(coord) for coord in bounds.split(',')]
+        if len(bounds_arr) != 4:
+            raise ValueError("Extent must contain exactly four values: left, bottom, right, top.")
+        return Extent(bounds_arr[0], bounds_arr[1], bounds_arr[2], bounds_arr[3], crs=crs)
 
 
 WEB_MERCATOR_EXTENT = Extent(-20037508.342789244, -20037508.342789244, 20037508.342789244, 20037508.342789244, crs="EPSG:3857")
