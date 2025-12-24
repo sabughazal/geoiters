@@ -6,6 +6,8 @@
         types: [created]
 
     jobs:
+      permissions:
+        id-token: write
       deploy:
         runs-on: ubuntu-latest
         steps:
