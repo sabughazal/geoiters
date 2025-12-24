@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A Python package for geospatial iteration utilities"
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "Apache License 2.0"}
+license = {text = "Apache-2.0"}
 authors = [
     {name = "Sultan Abughazal", email = "sultan.abughazal@outlook.com"},
 ]
@@ -16,7 +16,7 @@ keywords = ["geospatial", "iteration", "utilities", "GIS", "spatial data"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License :: 2.0",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
